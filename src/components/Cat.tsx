@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
-import catSprite from '../assets/cat-sprite.png';
+import catRunningSprite from '../assets/cat-running-sprite.png';
+import catIdleSprite from '../assets/cat-idle-sprite.png';
 
 interface CatProps {
   targetPosition: { x: number; y: number };
@@ -127,15 +128,15 @@ export const Cat = ({ targetPosition }: CatProps) => {
           transform: `rotate(${rotation + 90}deg) ${isTired ? 'scale(0.9)' : 'scale(1)'}`,
         }}
       >
-        <img
-          src={catSprite}
-          alt="Cat chasing laser"
-          className={`w-16 h-16 object-contain drop-shadow-lg transition-all duration-200 ${
+        <div
+          className={`w-16 h-16 bg-no-repeat bg-cover transition-all duration-200 ${
             isChasing && !isTired 
-              ? 'animate-[wiggle_0.3s_ease-in-out_infinite]' 
-              : ''
+              ? 'animate-cat-run' 
+              : 'animate-cat-idle'
           }`}
           style={{
+            backgroundImage: `url(${isChasing && !isTired ? catRunningSprite : catIdleSprite})`,
+            backgroundSize: isChasing && !isTired ? '800% 100%' : '400% 100%',
             filter: `drop-shadow(2px 2px 4px hsl(var(--cat-shadow))) ${
               isTired ? 'grayscale(30%)' : ''
             }`,
