@@ -123,6 +123,14 @@ export default {
 					'50%': {
 						transform: 'translateY(-5px)'
 					}
+				},
+				'wiggle': {
+					'0%, 100%': {
+						transform: 'rotate(-2deg) scale(1)'
+					},
+					'50%': {
+						transform: 'rotate(2deg) scale(1.05)'
+					}
 				}
 			},
 			animation: {
@@ -130,7 +138,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'laser-pulse': 'laser-pulse 1s ease-in-out infinite',
 				'cat-bounce': 'cat-bounce 2s infinite',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'wiggle': 'wiggle 0.3s ease-in-out infinite'
 			}
 		}
 	},
