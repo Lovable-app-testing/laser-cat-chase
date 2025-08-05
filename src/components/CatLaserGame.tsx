@@ -1,10 +1,28 @@
 import { useState, useEffect } from "react";
 import { Cat } from "./Cat";
 import { LaserPointer } from "./LaserPointer";
+import facts from "../lib/facts.json";
 
 export const CatLaserGame = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isGameActive, setIsGameActive] = useState(false);
+  const [randomFact, setRandomFact] = useState(() => {
+    const factKeys = Object.keys(facts) as (keyof typeof facts)[];
+    const randomKey = factKeys[Math.floor(Math.random() * factKeys.length)];
+    return facts[randomKey];
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const factKeys = Object.keys(facts) as (keyof typeof facts)[];
+      const randomKey = factKeys[Math.floor(Math.random() * factKeys.length)];
+      setRandomFact(facts[randomKey]);
+    }, 5000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -67,11 +85,7 @@ export const CatLaserGame = () => {
           <h3 className="font-semibold text-card-foreground mb-2">
             Did you know?
           </h3>
-          <p className="text-sm text-muted-foreground">
-            Cats can't actually see laser dots very well, but they love chasing
-            the movement! Their predatory instincts kick in when they see
-            something small and fast moving.
-          </p>
+          <p className="text-sm text-muted-foreground">{randomFact}</p>
         </div>
       </div>
     </div>
