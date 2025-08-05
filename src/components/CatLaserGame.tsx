@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Cat } from './Cat';
-import { LaserPointer } from './LaserPointer';
+import { useState, useEffect } from "react";
+import { Cat } from "./Cat";
+import { LaserPointer } from "./LaserPointer";
 
 export const CatLaserGame = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -18,12 +18,12 @@ export const CatLaserGame = () => {
       setIsGameActive(false);
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [isGameActive]);
 
@@ -37,7 +37,7 @@ export const CatLaserGame = () => {
       {/* Game title */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 z-30">
         <h1 className="text-4xl font-bold text-foreground text-center">
-          🐱 Cat Laser Chase
+          Laser Chase
         </h1>
         <p className="text-muted-foreground text-center mt-2">
           Move your mouse to control the laser pointer!
@@ -64,10 +64,13 @@ export const CatLaserGame = () => {
       {/* Fun facts about cats */}
       <div className="absolute bottom-8 right-8 z-30 max-w-xs">
         <div className="bg-card/80 backdrop-blur-sm rounded-lg p-4 border border-border">
-          <h3 className="font-semibold text-card-foreground mb-2">Did you know?</h3>
+          <h3 className="font-semibold text-card-foreground mb-2">
+            Did you know?
+          </h3>
           <p className="text-sm text-muted-foreground">
-            Cats can't actually see laser dots very well, but they love chasing the movement!
-            Their predatory instincts kick in when they see something small and fast moving.
+            Cats can't actually see laser dots very well, but they love chasing
+            the movement! Their predatory instincts kick in when they see
+            something small and fast moving.
           </p>
         </div>
       </div>
